@@ -2,8 +2,22 @@ import React from 'react'
 import AuthLayout from '../components/AuthLayout.jsx'
 import TextInput from '../components/TextInput.jsx'
 import Button from '../components/Button.jsx'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const UserLogin = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const email = e.target["user-login-email"].value
+    const password = e.target["user-login-password"].value
+    await axios.post("http://localhost:5000/api/auth/login", {
+      email,
+      password
+    }, {
+      withCredentials: true
+    })
+    navigate("/") 
+  }
   return (
     <AuthLayout
       heading="User login"

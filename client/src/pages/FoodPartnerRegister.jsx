@@ -2,8 +2,31 @@ import React from 'react'
 import AuthLayout from '../components/AuthLayout.jsx'
 import TextInput from '../components/TextInput.jsx'
 import Button from '../components/Button.jsx'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const FoodPartnerRegister = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const businessName = e.target["partner-business-name"].value
+    const email = e.target["partner-email"].value
+    const phoneNumber = e.target["partner-phone"].value
+    const password = e.target["partner-password"].value
+    axios.post("http://localhost:5000/api/auth/register", {
+      businessName,
+      email,
+      phoneNumber,
+      password
+    }, {
+      withCredentials: true
+    }).then(res => {
+      if (res.status === 200) {
+        navigate("/create-food")
+      } else {
+        console.log(res)
+    }
+    })
+  }
   return (
     <AuthLayout
       heading="Partner registration"

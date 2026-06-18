@@ -6,9 +6,9 @@ import jwt from "jsonwebtoken"
 
 export const registerUser = async (req, res) => {
     try {
-        const { name, email, password, phone, address } = req.body
+        const { name, email, password, address } = req.body
 
-        if (!name || !email || !password || !phone || !address) {
+        if (!name || !email || !password ||  !address) {
             return res.status(400).json({ message: "Name, email and password are required" })
         }
 
@@ -20,8 +20,8 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const newUser = await pool.query(
-            "INSERT INTO users (name, email, password, phone, address) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-            [name, email, hashedPassword, phone, address]
+            "INSERT INTO users (name, email, password,  address) VALUES ($1, $2, $3, $4) RETURNING *",
+            [name, email, hashedPassword,  address]
         )
 
         const user = newUser.rows[0]
