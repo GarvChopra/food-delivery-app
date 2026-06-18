@@ -1,12 +1,8 @@
 import React from 'react'
-import styles from "styled-components"
-import { darkTheme } from './utlis/Theme'
-import Navbar from './components/Navbar'
+import AppRoutes from './routes/AppRoutes.jsx'
 
 const App = () => {
-  return (
-    <Navbar />
-  )
+  return <AppRoutes />
 }
 
 export default App

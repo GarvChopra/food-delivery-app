@@ -8,7 +8,7 @@ export const registerUser = async (req, res) => {
     try {
         const { name, email, password, phone, address } = req.body
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !phone || !address) {
             return res.status(400).json({ message: "Name, email and password are required" })
         }
 
@@ -81,9 +81,9 @@ export const logoutUser = (req, res) => {
 
 export const registerFoodPartner = async (req, res) => {
     try {
-        const { name, email, password } = req.body
+        const { name, email,phone , password } = req.body
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !phone) {
             return res.status(400).json({ message: "Name, email and password are required" })
         }
 
@@ -95,8 +95,8 @@ export const registerFoodPartner = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const newPartner = await pool.query(
-            "INSERT INTO food_partners (name, email, password) VALUES ($1, $2, $3) RETURNING *",
-            [name, email, hashedPassword]
+            "INSERT INTO food_partners (name, email, phone , password) VALUES ($1, $2, $3, $4) RETURNING *",
+            [name, email,phone, hashedPassword]
         )
 
         const partner = newPartner.rows[0]

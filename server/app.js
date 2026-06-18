@@ -3,6 +3,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import authRoutes from "./routes/authRoutes.js"
 import foodroutes from "./routes/foodroutes.js"
+import cors from "cors"
 
 const app = express()
 
@@ -12,6 +13,10 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin: http://localhost:5000,
+    credentials: true
+}))
 
 app.get("/", (req, res) => {
     res.send("Zomato API Running")
