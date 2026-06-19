@@ -6,6 +6,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const UserLogin = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const email = e.target["user-login-email"].value
@@ -16,7 +18,7 @@ const UserLogin = () => {
     }, {
       withCredentials: true
     })
-    navigate("/") 
+    navigate("/home")
   }
   return (
     <AuthLayout
@@ -24,7 +26,7 @@ const UserLogin = () => {
       description="Access your meal dashboard, orders, and saved restaurants effortlessly."
       asideLabel="User sign in"
     >
-      <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <TextInput label="Email address" id="user-login-email" type="email" placeholder="name@example.com" required />
         <TextInput label="Password" id="user-login-password" type="password" placeholder="Enter your password" required />
         <Button type="submit" className="button-primary">

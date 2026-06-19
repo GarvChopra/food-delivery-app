@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @import './theme.css';
 
 * {
@@ -47,6 +48,13 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .auth-shell {

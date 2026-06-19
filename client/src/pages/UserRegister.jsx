@@ -3,8 +3,11 @@ import axios from 'axios'
 import AuthLayout from '../components/AuthLayout.jsx'
 import TextInput from '../components/TextInput.jsx'
 import Button from '../components/Button.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const UserRegister = () => {
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const name = e.target["user-fullname"].value
@@ -17,6 +20,7 @@ const UserRegister = () => {
         }, {
             withCredentials: true
         })
+        navigate("/home")
     }
 
     return (
